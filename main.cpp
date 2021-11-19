@@ -50,5 +50,9 @@ main() {
   for (cin >> countdown; countdown > 0; --countdown)
     cout << "Iteration number: " << countdown << "." << endl;
 
-  printf("This is a %s", "formatted text.");
+  printf("This is a %s\n", "formatted text.");
+  printf("We can add blank spaces %20s\n", "like so.\n");
+  printf("Or justify the %-20s %s\n", "text,",
+         "so we would add 20 spaces between the first and second text.\n");
+  printf("Or the number of decimals to show %.2f\n", 3.14159265);
 }
