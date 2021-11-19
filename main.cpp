@@ -1,5 +1,6 @@
 #include <algorithm>  // A library with a lot of useful math functions like max, min, abs, sqrt, ceil, floor, etc.
 #include <iostream>
+#include <list>
 #include <string>
 using namespace std;  // We add std namespace to avoid having to write
                       // std::<function> all the time.
@@ -49,6 +50,16 @@ main() {
   // 'for' loop allows us to use cin as first expression
   for (cin >> countdown; countdown > 0; --countdown)
     cout << "Iteration number: " << countdown << "." << endl;
+
+  list<string> names = {"Alex", "Paco", "Juan", "Miguel"};  // #include <list>
+
+  // Pre C++11 way to manage iterables.
+  // Lambda notation => [](<type> <value>){ <expression w/o <value>> }
+  for_each(names.begin(), names.end(),
+           [](string name) { cout << name << endl; });
+
+  // Post C++11 way to manage iterables.
+  for (string name : names) cout << name << endl;
 
   printf("This is a %s\n", "formatted text.");
   printf("We can add blank spaces %20s\n", "like so.\n");
