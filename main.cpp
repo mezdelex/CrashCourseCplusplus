@@ -36,4 +36,18 @@ main() {
 
   // 'algorithm' library has many useful math functions.
   // Not gonna use it here, just for the record.
+
+  // logical operators are used the same way as in Java.
+
+  // 'while' loop example
+  cout << "Enter the number of iterations:" << endl;
+  int countdown;
+  cin >> countdown;
+  while (countdown > 0)
+    cout << "Iteration number: " << countdown-- << "." << endl;
+
+  cout << "Enter the number of iterations:" << endl;
+  // 'for' loop allows us to use cin as first expression
+  for (cin >> countdown; countdown > 0; --countdown)
+    cout << "Iteration number: " << countdown << "." << endl;
 }
