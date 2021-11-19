@@ -2,32 +2,33 @@
 #include <iostream>
 #include <list>
 #include <string>
-using namespace std;  // We add std namespace to avoid having to write
-                      // std::<function> all the time.
+
 main() {
-  cout << "Please enter your fullname:" << endl;
-  string fullname;
-  getline(cin, fullname);  // std::cin only allows us to read characters until a
+  std::cout << "Please enter your fullname:" << std::endl;
+  std::string fullname;
+  std::getline(std::cin,
+               fullname);  // std::cin only allows us to read characters until a
                            // blank space. To be able to read more than 1 word,
                            // we need to use 'getline' from 'string' library.
 
-  cout << "Enter your age:" << endl;
+  std::cout << "Enter your age:" << std::endl;
   int age;
-  cin >> age;
+  std::cin >> age;
 
   // 'if' statement example
   if (age >= 18)
-    cout << "Hello " << fullname << "!"
-         << " You are " << age << " years old, welcome." << endl;
+    std::cout << "Hello " << fullname << "!"
+              << " You are " << age << " years old, welcome." << std::endl;
   else
-    cout << "Hello " << fullname << "!"
-         << " You are " << age << " years old, so you can't join us yet."
-         << endl;
+    std::cout << "Hello " << fullname << "!"
+              << " You are " << age << " years old, so you can't join us yet."
+              << std::endl;
 
   // Same of the above using ternary operator:
-  cout << "Hello " << fullname << "!"
-       << " You are " << age << " years old, "
-       << (age >= 18 ? "welcome." : "so you can't join us yet.") << endl;
+  std::cout << "Hello " << fullname << "!"
+            << " You are " << age << " years old, "
+            << (age >= 18 ? "welcome." : "so you can't join us yet.")
+            << std::endl;
   // Note that if we would've needed to concatenate text with other elements
   // inside a ternary operator expression, we would've use '+' like in many
   // other languages.
@@ -40,26 +41,44 @@ main() {
   // logical operators are used the same way as in Java.
 
   // 'while' loop example
-  cout << "Enter the number of iterations:" << endl;
+  std::cout << "Enter the number of iterations:" << std::endl;
   int countdown;
-  cin >> countdown;
+  std::cin >> countdown;
   while (countdown > 0)
-    cout << "Iteration number: " << countdown-- << "." << endl;
+    std::cout << "Iteration number: " << countdown-- << "." << std::endl;
 
-  cout << "Enter the number of iterations:" << endl;
+  std::cout << "Enter the number of iterations:" << std::endl;
   // 'for' loop allows us to use cin as first expression
-  for (cin >> countdown; countdown > 0; --countdown)
-    cout << "Iteration number: " << countdown << "." << endl;
+  for (std::cin >> countdown; countdown > 0; --countdown)
+    std::cout << "Iteration number: " << countdown << "." << std::endl;
 
-  list<string> names = {"Alex", "Paco", "Juan", "Miguel"};  // #include <list>
+  std::vector<std::string> names = {"Alex", "Paco", "Juan", "Miguel"};
 
   // Pre C++11 way to manage iterables.
   // Lambda notation => [](<type> <value>){ <expression w/o <value>> }
   for_each(names.begin(), names.end(),
-           [](string name) { cout << name << endl; });
+           [](std::string name) { std::cout << name << std::endl; });
 
   // Post C++11 way to manage iterables.
-  for (string name : names) cout << name << endl;
+  for (std::string name : names) std::cout << name << std::endl;
+
+  // A vector is a dynamic array. The values are allocated in contiguous memory
+  // locations, so we can access each position specifying the index in f(1) time
+  // complexity. On the other hand, the insertion or deletion has a f(n) time
+  // complexity if it's not the last element because it has to reasign each
+  // position.
+  std::cout << names[2] << std::endl;
+  // A list is a doubly linked list. We cannot access each position directly
+  // like we do in a vector, we need to iterate instead. On the other hand,
+  // insertion and deletion are way faster than in vectors.
+
+  // Also something important to note is the iteration validation. In vectors,
+  // since we reasign memory positions each time we insert/delete, the iteration
+  // gets invalidated whenever this happens. In lists, since the positions
+  // remain the same, iteration doesn't get invalidated.
+
+  // So, if we are using a vector, we might need to iterate over a copy of the
+  // actual iterable to avoid mutation problems.
 
   printf("This is a %s\n", "formatted text.");
   printf("We can add blank spaces %20s\n", "like so.\n");
