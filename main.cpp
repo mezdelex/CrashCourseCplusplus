@@ -1,3 +1,4 @@
+#include <algorithm>  // A library with a lot of useful math functions like max, min, abs, sqrt, ceil, floor, etc.
 #include <iostream>
 #include <string>
 using namespace std;  // We add std namespace to avoid having to write
@@ -32,4 +33,7 @@ main() {
   // other languages.
 
   // 'switch' statement is exactly the same as in Java
+
+  // 'algorithm' library has many useful math functions.
+  // Not gonna use it here, just for the record.
 }
