@@ -3,7 +3,6 @@
 #include <string>
 using namespace std;  // We add std namespace to avoid having to write
                       // std::<function> all the time.
-
 main() {
   cout << "Please enter your fullname:" << endl;
   string fullname;
@@ -50,4 +49,6 @@ main() {
   // 'for' loop allows us to use cin as first expression
   for (cin >> countdown; countdown > 0; --countdown)
     cout << "Iteration number: " << countdown << "." << endl;
+
+  printf("This is a %s", "formatted text.");
 }
