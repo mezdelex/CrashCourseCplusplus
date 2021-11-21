@@ -92,5 +92,8 @@ main() {
   printf("Or the number of decimals to show %.2f\n", 3.14159265);
 
   std::cout << suma(1, 2) << std::endl;
+  // We use overloaded functions to avoid the use of variadic arguments.
+  std::cout << suma(1, 2, 3) << std::endl;
+  std::cout << suma(1, 2, 3, 4) << std::endl;
   std::cout << saludar("Alex") << std::endl;
 }
