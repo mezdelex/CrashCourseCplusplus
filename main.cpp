@@ -96,4 +96,13 @@ main() {
   std::cout << suma(1, 2, 3) << std::endl;
   std::cout << suma(1, 2, 3, 4) << std::endl;
   std::cout << saludar("Alex") << std::endl;
+
+  std::string nombre = "Alex";
+  // Everytime we define a variable, we allocate memory for it. To access that
+  // memory address, we can use '&' operator.
+  std::cout << &nombre << std::endl;
+  // We can also asign a pointer to that address so that we can retrieve the
+  // value and/or reallocate the address dinamycally if needed.
+  std::string* pNombre = &nombre;  // Another naming convention -> 'ptr_nombre'
+  std::cout << "Address: " << pNombre << "\nValue: " << *pNombre << std::endl;
 }
