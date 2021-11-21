@@ -6,17 +6,16 @@
             "command": "C:\\w64devkit\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
+                // We need to change the compile parameters from ${file} to ${fileDirname}\\*.cpp to also include headers and their implementations
                 "-g",
-                "${file}",
+                "${fileDirname}\\*.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
                 "cwd": "${fileDirname}"
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "problemMatcher": ["$gcc"],
             "group": {
                 "kind": "build",
                 "isDefault": true

@@ -1,7 +1,12 @@
 #include <algorithm>  // A library with a lot of useful math functions like max, min, abs, sqrt, ceil, floor, etc.
-#include <iostream>
 #include <list>
 #include <string>
+
+// We need to change the compile parameters in 'tasks.json' from ${file} to
+// ${fileDirname}\\*.cpp to include our headers and their implementations.
+// If there were more folders to include, we could've used
+// ${fileDirname}\\**\\*.cpp instead to include those subfolders.
+#include "helper.hpp"  // Since 'helper.hpp' includes <iostream> itself, we don't need to include it again.
 
 main() {
   std::cout << "Please enter your fullname:" << std::endl;
@@ -85,4 +90,7 @@ main() {
   printf("Or justify the %-20s %s\n", "text,",
          "so we would add 20 spaces between the first and second text.\n");
   printf("Or the number of decimals to show %.2f\n", 3.14159265);
+
+  std::cout << suma(1, 2) << std::endl;
+  std::cout << saludar("Alex") << std::endl;
 }
