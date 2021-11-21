@@ -6,6 +6,8 @@
 // ${fileDirname}\\*.cpp to include our headers and their implementations.
 // If there were more folders to include, we could've used
 // ${fileDirname}\\**\\*.cpp instead to include those subfolders.
+#include "ClassTest1.hpp"  // We include our class header linked to its implementation.
+#include "ClassTest2.hpp"  // We include our child class header linked to its implementation.
 #include "helper.hpp"  // Since 'helper.hpp' includes <iostream> itself, we don't need to include it again.
 
 main() {
@@ -105,4 +107,31 @@ main() {
   // value and/or reallocate the address dinamycally if needed.
   std::string* pNombre = &nombre;  // Another naming convention -> 'ptr_nombre'
   std::cout << "Address: " << pNombre << "\nValue: " << *pNombre << std::endl;
+
+  // This is how we define and populate an array.
+  std::string carList[] = {"Ford", "Chevrolet", "Toyota"};
+  // Different ways to iterate over it.
+  for (std::string car : carList) std::cout << car << std::endl;
+  for (int i = 0; i < size(carList); ++i) std::cout << carList[i] << std::endl;
+
+  // Note that in this case, since the value that we are assigning to the
+  // pointer is an array, we don't need to use any '&' because the array itself
+  // is a data structure that works by reference.
+  std::string* pCarList = carList;
+  // So, we can access the same values in two ways:
+  std::cout << pCarList[0] << std::endl;  // We don't need the '*'.
+  std::cout << carList[0] << std::endl;
+  // Just for the record, doesn't make much sense.
+
+  // This is a multidimensional array (3D in this case).
+  int numbers[3][3][2] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+  ClassTest1 classTest1(42, 23);  // Father class
+  std::cout << "First attribute: " << classTest1.getA()
+            << "\nSecond attribute: " << classTest1.getB() << std::endl;
+
+  ClassTest2 classTest2(46, 54, 12);  // Child class
+  std::cout << "First attribute: " << classTest2.getA()
+            << "\nSecond attribute: " << classTest2.getB()
+            << "\nThird attribute: " << classTest2.getC() << std::endl;
 }
