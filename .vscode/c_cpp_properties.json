@@ -3,13 +3,14 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                // We need to add the path to the <mariadb/conncpp.hpp> header file that we just downloaded from mariadb.com
+                // https://mariadb.com/downloads/connectors/connectors-data-access/cpp-connector
+                // This connector will allow us to connect to the database using the C++ API.
+                // IMPORTANT: The 1.0.1-GA works fine, 1.1.0 throws an error when included 24/11/2021.
+                "C:\\Program Files\\MariaDB\\MariaDB C++ Connector 64-bit\\**"
             ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
+            "defines": ["_DEBUG", "UNICODE", "_UNICODE"],
             "compilerPath": "C:\\w64devkit\\bin\\gcc.exe",
             "cStandard": "gnu17",
             "cppStandard": "gnu++17",

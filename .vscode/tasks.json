@@ -9,6 +9,9 @@
                 // We need to change the compile parameters from ${file} to ${fileDirname}\\*.cpp to also include headers and their implementations
                 "-g",
                 "${fileDirname}\\*.cpp",
+                // Getting compilation error here; No such file mariadb/conncpp.hpp
+                "-I",
+                "C:\\Program Files\\MariaDB\\MariaDB C++ Connector 64-bit",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

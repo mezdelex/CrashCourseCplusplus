@@ -1,6 +1,12 @@
 #include <algorithm>  // A library with a lot of useful math functions like max, min, abs, sqrt, ceil, floor, etc.
 #include <list>
+// We include the main header file from the MariaDB C++ Connector library.
+// We also need to specify the path where this library is located.
+// To do that, we add the path to c_cpp_properties.json -> includePath.
 #include <string>
+
+// Underlined ERROR after first compilation
+#include "mariadb/conncpp.hpp"
 
 // We need to change the compile parameters in 'tasks.json' from ${file} to
 // ${fileDirname}\\*.cpp to include our headers and their implementations.
@@ -134,4 +140,38 @@ main() {
   std::cout << "First attribute: " << classTest2.getA()
             << "\nSecond attribute: " << classTest2.getB()
             << "\nThird attribute: " << classTest2.getC() << std::endl;
+
+  // Recommended GUI Client for MariaDB -> HeidiSQL
+  // https://www.heidisql.com/download.php
+
+  try {
+    // Instantiate Driver
+    sql::Driver* pDriver = sql::mariadb::get_driver_instance();
+
+    // Configure Connection
+    sql::SQLString url("jdbc:mariadb://localhost:3306/db_testing");
+    sql::Properties properties({{"user", "root"}, {"password", ""}});
+
+    // Establish Connection
+    std::unique_ptr<sql::Connection> connection(
+        pDriver->connect(url, properties));
+
+    // To retrieve users from user table, we do the following:
+    // Create a new Statement
+    std::unique_ptr<sql::Statement> statement(connection->createStatement());
+
+    // Execute query
+    sql::ResultSet* pResultSet = statement->executeQuery("SELECT * from user");
+
+    // Loop through and print results
+    while (pResultSet->next()) {
+      std::cout << "id = " << pResultSet->getInt(0)
+                << " -> name: " << pResultSet->getString(1) << std::endl;
+    }
+    pResultSet->close();
+    statement->close();
+    connection->close();
+  } catch (sql::SQLException& e) {
+    std::cout << "ERROR: " << e.what() << std::endl;
+  }
 }
